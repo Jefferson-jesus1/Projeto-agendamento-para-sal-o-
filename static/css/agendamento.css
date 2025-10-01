@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --rosa-escuro: #8a2e73;
+    --rosa-claro: #cc5cb4;
+    --rosa-hover: #b856a2;
+    --fundo-suave: #fdf6f9;
+    --fundo-card: #fff0f7;
+    --fonte-titulo: 'Playfair Display', serif;
+    --fonte-texto: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--fonte-texto);
+    background: var(--fundo-suave);
+    color: var(--rosa-escuro);
+    margin: 0;
+    padding: 0;
+}
+
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--fundo-suave);
+    padding: 1.2rem 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.navbar h1 {
+    font-family: var(--fonte-titulo);
+    font-size: 1.8rem;
+    color: var(--rosa-escuro);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    color: var(--rosa-escuro);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a.active,
+.nav-links li a:hover {
+    color: var(--rosa-hover);
+}
+
+/* CONTAINER PRINCIPAL */
+.main-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* TÍTULO */
+h2 {
+    font-family: var(--fonte-titulo);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--rosa-escuro);
+    text-align: center;
+}
+
+/* FORMULÁRIO */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--rosa-escuro);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 2px solid var(--rosa-claro);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: #fff0f7;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: var(--rosa-hover);
+    outline: none;
+}
+
+/* BOTÃO */
+button {
+    background-color: var(--rosa-claro);
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+button:disabled {
+    background-color: #e0bddd;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--rosa-hover);
+}
+
+/* MENSAGEM DE CARREGAMENTO */
+.loading {
+    font-style: italic;
+    color: var(--rosa-escuro);
+    margin-top: 0.5rem;
+}
+
+/* RODAPÉ */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--fundo-card);
+    color: var(--rosa-escuro);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+

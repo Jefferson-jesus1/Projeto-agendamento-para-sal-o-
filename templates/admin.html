@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="salon_system/static/css/admin.css">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+<body>
+    <h1>Painel do Administrador</h1>
+
+    <!-- Link para a página inicial/home -->
+                <li><a href="/">Início</a></li>
+
+   <!-- <h2>Adicionar Agendamento</h2>
+    <form id="formAdicionar">
+        <input type="date" name="datas" required>
+        <input type="time" name="horario" required>
+        <input type="text" name="cliente" placeholder="Nome do Cliente" required>
+        <input type="number" name="servico_id" placeholder="ID do Serviço" required>
+        <button type="submit">Adicionar</button>
+    </form>
+    -->
+
+    <h2>Agendamentos</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Cliente</th>
+            <th>Serviço</th>
+            <th>Ação</th>
+        </tr>
+        {% for ag in agendamentos %}
+        <tr>
+            <td>{{ ag.id }}</td>
+            <td>{{ ag.datas }}</td>
+            <td>{{ ag.horario }}</td>
+            <td>{{ ag.cliente }}</td>
+            <td>{{ ag.servico }}</td>
+            <td>
+                <form action="/admin/remover/{{ ag.id }}" method="post">
+                    <button type="submit">Remover</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+    document.getElementById('formAdicionar').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const resp = await fetch('/admin/adicionar', { method: 'POST', body: formData });
+        if (resp.ok) location.reload();
+    });
+    </script>
+</body>
+</html>

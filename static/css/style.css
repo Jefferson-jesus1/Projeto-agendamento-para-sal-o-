@@ -1,0 +1,531 @@
+/* ===== RESET E CONFIGURAÇÕES BÁSICAS ===== */
+* {
+    margin: 0;          /* Remove margens padrão de todos os elementos */
+    padding: 0;         /* Remove padding padrão de todos os elementos */
+    box-sizing: border-box;  /* Inclui border e padding no cálculo da largura/altura */
+}
+
+/* Configuração global do corpo da página */
+body {
+    font-family: 'Poppins', sans-serif;  /* Define fonte principal */
+    color: #333;                         /* Cor do texto padrão */
+    background-color: #fdf6f9;           /* Cor de fundo suave rosa claro */
+}
+
+/* ===== ESTILOS DO CABEÇALHO (HEADER) ===== */
+.navbar {
+    background-color: #fdf6f9;           /* Fundo igual ao body para continuidade */
+    padding: 20px 40px;                  /* Espaçamento interno: 20px vertical, 40px horizontal */
+    display: flex;                       /* Layout flexível */
+    justify-content: space-between;       /* Distribui elementos nas extremidades */
+    align-items: center;                 /* Alinha verticalmente ao centro */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);  /* Sombra sutil embaixo */
+    position: fixed;                     /* Fixa o header no topo da página */
+    top: 0;                             /* Posiciona no topo */
+    left: 0;                            /* Alinha à esquerda */
+    right: 0;                           /* Alinha à direita (ocupa toda largura) */
+    z-index: 1000;                      /* Garante que fique acima de outros elementos */
+    transition: all 0.3s ease;         /* Transição suave para mudanças */
+}
+
+/* Estilo do título/logo "Monique Braids" */
+.navbar h1 {
+    font-family: 'Playfair Display', serif;  /* Fonte elegante serifada */
+    font-size: 1.8rem;                       /* Tamanho da fonte */
+    color: #8a2e73;                          /* Cor roxa principal */
+    position: relative;                      /* Para posicionar o ícone sparkle */
+    transition: transform 0.3s ease;        /* Transição suave para animações */
+    cursor: pointer;                         /* Muda cursor para indicar que é clicável */
+}
+
+/* Efeito hover no logo - cresce ligeiramente */
+.navbar h1:hover {
+    transform: scale(1.05);  /* Aumenta 5% no hover */
+}
+
+/* Ícone sparkle decorativo após o título */
+.navbar h1::after {
+    content: '✨';              /* Emoji de sparkle */
+    position: absolute;         /* Posicionamento absoluto */
+    top: -8px;                 /* 8px acima do texto */
+    right: -20px;              /* 20px à direita do texto */
+    font-size: 0.8rem;         /* Tamanho menor que o título */
+    color: #d4af37;            /* Cor dourada */
+    animation: sparkle 2s infinite;  /* Animação contínua de 2 segundos */
+}
+
+/* Lista de navegação */
+.navbar ul {
+    list-style: none;    /* Remove marcadores da lista */
+    display: flex;       /* Layout horizontal */
+    gap: 20px;          /* Espaço de 20px entre itens */
+}
+
+/* Links de navegação */
+.navbar ul li a {
+    text-decoration: none;              /* Remove sublinhado padrão */
+    color: #8a2e73;                     /* Cor roxa */
+    font-weight: 500;                   /* Peso da fonte médio */
+    transition: all 0.3s ease;         /* Transições suaves */
+    position: relative;                 /* Para posicionar linha decorativa */
+    padding: 8px 12px;                  /* Espaçamento interno */
+    border-radius: 20px;                /* Bordas arredondadas */
+}
+
+/* Linha decorativa que aparece no hover */
+.navbar ul li a::after {
+    content: '';                        /* Elemento vazio */
+    position: absolute;                 /* Posicionamento absoluto */
+    bottom: 2px;                       /* 2px do fundo */
+    left: 50%;                         /* Centro horizontal */
+    transform: translateX(-50%);       /* Centraliza exatamente */
+    width: 0;                          /* Largura inicial zero */
+    height: 2px;                       /* Altura da linha */
+    background: linear-gradient(135deg, #8a2e73, #b856a2);  /* Gradiente roxo */
+    transition: width 0.3s ease;       /* Transição da largura */
+    border-radius: 1px;                /* Bordas arredondadas */
+}
+
+/* Efeitos hover nos links de navegação */
+.navbar ul li a:hover {
+    color: #b856a2;                               /* Muda para roxo mais claro */
+    background-color: rgba(138, 46, 115, 0.08);  /* Fundo transparente roxo */
+}
+
+/* Linha decorativa aparece no hover */
+.navbar ul li a:hover::after {
+    width: 80%;  /* Expande para 80% da largura */
+}
+
+/* ===== SEÇÃO HERO (PRINCIPAL) ===== */
+.hero {
+    background-image: url("../img/salao-bg.jpg");  /* Imagem de fundo */
+    background-size: cover;                        /* Cobre toda a área */
+    background-position: center;                   /* Centraliza a imagem */
+    height: 100vh;                                /* Altura total da viewport */
+    display: flex;                                /* Layout flexível */
+    align-items: center;                          /* Centraliza verticalmente */
+    justify-content: center;                      /* Centraliza horizontalmente */
+    position: relative;                           /* Para overlay */
+    margin-top: 0;                               /* Remove margem superior */
+}
+
+/* Overlay gradiente sobre a imagem de fundo */
+.hero::before {
+    content: '';                    /* Elemento vazio */
+    position: absolute;             /* Cobre toda a hero section */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(138, 46, 115, 0.3), rgba(184, 86, 162, 0.2));  /* Gradiente roxo transparente */
+    z-index: 1;                    /* Fica entre a imagem e o conteúdo */
+}
+
+/* Card central com o conteúdo principal */
+.hero-content {
+    background-color: rgba(255, 255, 255, 0.95);  /* Fundo branco quase opaco */
+    padding: 50px;                                 /* Espaçamento interno generoso */
+    border-radius: 25px;                          /* Bordas bem arredondadas */
+    text-align: center;                           /* Texto centralizado */
+    max-width: 650px;                            /* Largura máxima */
+    position: relative;                          /* Para ficar acima do overlay */
+    z-index: 2;                                  /* Fica acima do overlay */
+    box-shadow: 0 15px 40px rgba(138, 46, 115, 0.2);  /* Sombra pronunciada */
+    backdrop-filter: blur(10px);                 /* Efeito blur no fundo */
+    animation: fadeInUp 1s ease-out;             /* Animação de entrada */
+}
+
+/* Título principal da hero */
+.hero-content h2 {
+    font-family: 'Playfair Display', serif;  /* Fonte elegante */
+    font-size: 2.8rem;                       /* Tamanho grande */
+    margin-bottom: 20px;                     /* Espaço abaixo */
+    color: #8a2e73;                          /* Cor roxa */
+    line-height: 1.2;                        /* Altura da linha reduzida */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);  /* Sombra sutil no texto */
+}
+
+/* Subtítulo da hero */
+.hero-content p {
+    font-size: 1.2rem;      /* Tamanho médio */
+    margin-bottom: 30px;    /* Espaço para o botão */
+    color: #555;            /* Cinza escuro */
+    font-weight: 300;       /* Peso leve */
+}
+
+/* Botão de call-to-action */
+.btn {
+    background: linear-gradient(135deg, #cc5cb4, #b3429d);  /* Gradiente roxo */
+    color: white;                                           /* Texto branco */
+    padding: 15px 35px;                                    /* Espaçamento interno */
+    border: none;                                          /* Remove borda padrão */
+    border-radius: 50px;                                   /* Bordas totalmente arredondadas */
+    text-decoration: none;                                 /* Remove sublinhado */
+    font-weight: 600;                                      /* Peso da fonte semi-bold */
+    font-size: 1.1rem;                                     /* Tamanho da fonte */
+    transition: all 0.4s ease;                            /* Transições suaves */
+    display: inline-block;                                 /* Para poder usar transform */
+    text-transform: uppercase;                             /* Texto em maiúsculas */
+    letter-spacing: 0.5px;                                /* Espaçamento entre letras */
+    box-shadow: 0 8px 25px rgba(204, 92, 180, 0.3);      /* Sombra colorida */
+    position: relative;                                    /* Para efeito shimmer */
+    overflow: hidden;                                      /* Esconde overflow do efeito */
+}
+
+/* Efeito shimmer (brilho) que passa sobre o botão */
+.btn::before {
+    content: '';                    /* Elemento vazio */
+    position: absolute;             /* Posicionamento absoluto */
+    top: 0;
+    left: -100%;                   /* Começa fora da tela à esquerda */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);  /* Gradiente transparente com brilho */
+    transition: left 0.6s ease;    /* Movimento suave */
+}
+
+/* Ativa o efeito shimmer no hover */
+.btn:hover::before {
+    left: 100%;  /* Move para fora da tela à direita */
+}
+
+/* Efeitos hover do botão */
+.btn:hover {
+    background: linear-gradient(135deg, #b3429d, #9a3587);  /* Gradiente mais escuro */
+    transform: translateY(-3px) scale(1.05);               /* Move para cima e cresce */
+    box-shadow: 0 12px 35px rgba(204, 92, 180, 0.4);      /* Sombra mais pronunciada */
+}
+
+/* ===== SEÇÃO DE SERVIÇOS ===== */
+.servicos {
+    padding: 80px 40px;          /* Espaçamento interno generoso */
+    background-color: #f7eef4;   /* Fundo lilás suave */
+    text-align: center;          /* Conteúdo centralizado */
+    position: relative;          /* Para gradiente superior */
+}
+
+/* Gradiente que suaviza a transição da hero para serviços */
+.servicos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;                                          /* Altura da transição */
+    background: linear-gradient(180deg, #fdf6f9, #f7eef4); /* Do rosa claro para lilás */
+}
+
+/* Título da seção de serviços */
+.titulo-servicos {
+    font-family: 'Playfair Display', serif;  /* Fonte elegante */
+    font-size: 2.5rem;                       /* Tamanho grande */
+    color: #8a2e73;                          /* Cor roxa */
+    margin-bottom: 15px;                     /* Espaço abaixo */
+    position: relative;                      /* Para elementos decorativos */
+    display: inline-block;                   /* Para que decorações funcionem */
+}
+
+/* Linha decorativa principal sob o título */
+.titulo-servicos::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;                                         /* 10px abaixo do texto */
+    left: 50%;
+    transform: translateX(-50%);                           /* Centraliza */
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #8a2e73, #b856a2); /* Gradiente roxo */
+    border-radius: 2px;
+}
+
+/* Linha decorativa secundária (mais sutil) */
+.titulo-servicos::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;                                                           /* 15px abaixo do texto */
+    left: 50%;
+    transform: translateX(-50%);                                             /* Centraliza */
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(135deg, transparent, #8a2e73, transparent);  /* Gradiente com fade */
+}
+
+/* Grid responsivo dos cards de serviços */
+.galeria-servicos {
+    display: grid;                                    /* Layout em grade */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Colunas flexíveis com mínimo de 280px */
+    gap: 35px;                                       /* Espaço entre cards */
+    justify-items: center;                           /* Centraliza cards */
+    margin-top: 50px;                               /* Espaço do título */
+    max-width: 1200px;                              /* Largura máxima */
+    margin-left: auto;                              /* Centraliza horizontalmente */
+    margin-right: auto;
+}
+
+/* Cards individuais dos serviços */
+.card {
+    background-color: #fdf9fc;                      /* Fundo pastel suave */
+    border-radius: 20px;                           /* Bordas arredondadas */
+    box-shadow: 0 8px 25px rgba(138, 46, 115, 0.08);  /* Sombra sutil */
+    overflow: hidden;                              /* Esconde overflow das imagens */
+    transition: all 0.4s ease;                    /* Transições suaves */
+    cursor: pointer;                               /* Indica interatividade */
+    max-width: 320px;                             /* Largura máxima */
+    width: 100%;                                  /* Ocupa largura disponível */
+    position: relative;                           /* Para borda superior */
+}
+
+/* Borda superior colorida que aparece no hover */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;                                               /* Altura da borda */
+    background: linear-gradient(135deg, #8a2e73, #b856a2);    /* Gradiente roxo */
+    transform: scaleX(0);                                      /* Inicialmente invisível */
+    transition: transform 0.3s ease;                          /* Animação suave */
+}
+
+/* Ativa a borda superior no hover */
+.card:hover::before {
+    transform: scaleX(1);  /* Expande para largura total */
+}
+
+/* Imagens dos cards */
+.card img {
+    width: 100%;                    /* Largura total do card */
+    height: 220px;                  /* Altura fixa */
+    object-fit: cover;              /* Mantém proporção cortando se necessário */
+    transition: transform 0.5s ease;  /* Transição suave para zoom */
+}
+
+/* Títulos dos serviços */
+.card h3 {
+    padding: 20px;                         /* Espaçamento interno */
+    color: #8a2e73;                        /* Cor roxa */
+    font-family: 'Playfair Display', serif; /* Fonte elegante */
+    font-weight: 600;                      /* Peso semi-bold */
+    font-size: 1.3rem;                     /* Tamanho da fonte */
+    transition: color 0.3s ease;          /* Transição da cor */
+}
+
+/* Efeitos hover do card completo */
+.card:hover {
+    transform: translateY(-15px) rotate(1deg);         /* Move para cima e rotaciona levemente */
+    box-shadow: 0 20px 40px rgba(138, 46, 115, 0.15); /* Sombra mais pronunciada */
+}
+
+/* Efeito zoom na imagem no hover */
+.card:hover img {
+    transform: scale(1.1);  /* Aumenta 10% */
+}
+
+/* Mudança de cor do título no hover */
+.card:hover h3 {
+    color: #b856a2;  /* Roxo mais claro */
+}
+
+/* ===== RODAPÉ (FOOTER) ===== */
+footer {
+    text-align: center;                                    /* Texto centralizado */
+    padding: 30px 0;                                       /* Espaçamento vertical */
+    background: linear-gradient(135deg, #fff0f7, #f7eef4); /* Gradiente sutil */
+    color: #8a2e73;                                        /* Cor roxa */
+    font-size: 1rem;                                       /* Tamanho da fonte */
+    font-weight: 500;                                      /* Peso médio */
+    position: relative;                                    /* Para borda superior */
+}
+
+/* Linha decorativa no topo do footer */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;                                           /* Altura da linha */
+    background: linear-gradient(135deg, #8a2e73, #b856a2); /* Gradiente roxo */
+}
+
+/* Texto do footer com fonte elegante */
+footer p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+}
+
+/* ===== ANIMAÇÕES ===== */
+/* Animação de entrada da hero content */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;                /* Começa invisível */
+        transform: translateY(40px); /* Começa 40px abaixo */
+    }
+    to {
+        opacity: 1;                /* Fica visível */
+        transform: translateY(0);   /* Move para posição original */
+    }
+}
+
+/* Animação do ícone sparkle */
+@keyframes sparkle {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);    /* Posição e tamanho originais */
+        opacity: 1;                          /* Totalmente opaco */
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2); /* Rotaciona e cresce */
+        opacity: 0.7;                        /* Fica mais transparente */
+    }
+}
+
+/* ===== SCROLL SUAVE ===== */
+html {
+    scroll-behavior: smooth;      /* Rolagem suave entre seções */
+    scroll-padding-top: 100px;    /* Compensa altura do header fixo */
+}
+
+/* ===== RESPONSIVIDADE - TABLETS ===== */
+@media (max-width: 768px) {
+    /* Header responsivo */
+    .navbar {
+        flex-direction: column;  /* Empilha elementos verticalmente */
+        padding: 15px 20px;      /* Reduz padding */
+        gap: 15px;              /* Espaço entre logo e menu */
+    }
+    
+    .navbar h1 {
+        font-size: 1.6rem;  /* Reduz tamanho do logo */
+    }
+    
+    .navbar ul {
+        gap: 15px;              /* Reduz espaço entre links */
+        flex-wrap: wrap;        /* Permite quebra de linha */
+        justify-content: center; /* Centraliza menu */
+    }
+    
+    /* Hero responsiva */
+    .hero {
+        height: 100vh;    /* Mantém altura total */
+        padding: 0 20px;  /* Adiciona padding lateral */
+    }
+    
+    .hero-content {
+        padding: 35px;    /* Reduz padding interno */
+        max-width: 90%;   /* Aumenta largura relativa */
+    }
+    
+    .hero-content h2 {
+        font-size: 2.2rem;  /* Reduz tamanho do título */
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;  /* Reduz tamanho do subtítulo */
+    }
+    
+    .btn {
+        padding: 12px 28px;  /* Reduz padding do botão */
+        font-size: 1rem;     /* Reduz tamanho da fonte */
+    }
+    
+    /* Serviços responsivos */
+    .servicos {
+        padding: 60px 20px;  /* Reduz padding */
+    }
+    
+    .titulo-servicos {
+        font-size: 2rem;  /* Reduz tamanho do título */
+    }
+    
+    .galeria-servicos {
+        grid-template-columns: 1fr;  /* Uma coluna apenas */
+        gap: 25px;                   /* Reduz gap */
+    }
+}
+
+/* ===== RESPONSIVIDADE - SMARTPHONES ===== */
+@media (max-width: 480px) {
+    .navbar h1 {
+        font-size: 1.4rem;  /* Logo ainda menor */
+    }
+    
+    .navbar ul li a {
+        font-size: 0.9rem;    /* Links menores */
+        padding: 6px 10px;    /* Padding reduzido */
+    }
+    
+    .hero-content {
+        padding: 25px;  /* Padding mínimo */
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;  /* Título menor para mobile */
+    }
+    
+    .hero-content p {
+        font-size: 1rem;  /* Subtítulo padrão */
+    }
+    
+    .titulo-servicos {
+        font-size: 1.8rem;  /* Título de seção menor */
+    }
+    
+    .card h3 {
+        font-size: 1.2rem;  /* Títulos dos cards menores */
+        padding: 15px;      /* Padding reduzido */
+    }
+}
+
+/* ===== ACESSIBILIDADE ===== */
+/* Estados de foco para navegação por teclado */
+.navbar ul li a:focus,
+.btn:focus {
+    outline: 2px solid #8a2e73;  /* Contorno roxo */
+    outline-offset: 2px;         /* Espaço do elemento */
+}
+
+/* ===== OTIMIZAÇÕES DE PERFORMANCE ===== */
+/* Indica ao browser quais propriedades vão mudar (otimização) */
+.card img {
+    will-change: transform;
+}
+
+.btn {
+    will-change: transform;
+}
+
+/* ===== MELHORIAS PARA DISPOSITIVOS TOUCH ===== */
+/* Em dispositivos sem hover (touch), remove animações hover */
+@media (hover: none) {
+    .card:hover {
+        transform: none;  /* Remove transformação hover */
+    }
+    
+    /* Efeito de toque alternativo */
+    .card:active {
+        transform: scale(0.98);  /* Pequena redução ao tocar */
+    }
+}
+
+/* ===== PREVENÇÕES GERAIS ===== */
+/* Evita rolagem horizontal indesejada */
+body {
+    overflow-x: hidden;
+}
+
+/* ===== MELHORIAS TIPOGRÁFICAS ===== */
+/* Otimiza renderização de texto para títulos grandes */
+.hero-content h2,
+.titulo-servicos {
+    text-rendering: optimizeLegibility;
+}
+
+/* ===== PLACEHOLDER PARA CARREGAMENTO DE IMAGENS ===== */
+/* Gradiente sutil enquanto imagens carregam */
+.card img {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+}
+

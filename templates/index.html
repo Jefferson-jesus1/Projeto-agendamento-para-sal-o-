@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monique Braids</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />-->
+    <header>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <!-- CABEÇALHO DA PÁGINA -->
+    <header>
+        <!-- BARRA DE NAVEGAÇÃO PRINCIPAL -->
+        <nav class="navbar">
+            <!-- LOGO/TÍTULO CLICÁVEL QUE LEVA PARA ÁREA ADMINISTRATIVA -->
+            <!-- Adicione um link aqui que direciona para a página de administração -->
+            <a href="/admin" style="text-decoration: none;">
+                <h1>Monique Braids</h1>
+            </a>
+            
+            <!-- MENU DE NAVEGAÇÃO PRINCIPAL -->
+            <ul>
+                <!-- Link para a página inicial/home -->
+                <li><a href="#">Início</a></li>
+                
+                <!-- Link para página de agendamentos dos clientes -->
+                <li><a href="/agendamento">Agendamento</a></li>
+                
+                <!-- Link interno para a seção de serviços (scroll suave) -->
+                <li><a href="#servicos">Serviços</a></li>
+                
+                <!-- Link para página de contato -->
+                <li><a href="/contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SEÇÃO HERO (PRINCIPAL/DESTAQUE) -->
+    <!-- Esta é a primeira seção que o usuário vê, com imagem de fundo e call-to-action -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- TÍTULO PRINCIPAL DA PÁGINA -->
+            <h2>Mais que beleza, é autoestima!</h2>
+            
+            <!-- SUBTÍTULO/DESCRIÇÃO -->
+            <p>Porque você merece se sentir linda todos os dias.</p>
+            
+            <!-- BOTÃO DE CALL-TO-ACTION -->
+            <!-- Direciona o usuário para fazer agendamento -->
+            <a href="/agendamento" class="btn">Agendar agora</a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <!-- Mostra os principais serviços oferecidos pelo salão -->
+   <section id="servicos" class="servicos">
+        <!-- TÍTULO DA SEÇÃO -->
+        <h2 class="titulo-servicos">Nossos Serviços</h2>
+        
+        <!-- GALERIA/GRID DOS SERVIÇOS -->
+        <!-- Layout responsivo que se adapta ao tamanho da tela -->
+        <div class="galeria-servicos">
+            
+            <!-- CARD DO SERVIÇO: MEGA HAIR -->
+            <div class="card">
+                <!-- Imagem do serviço (carregada do diretório static) -->
+                 <img src="salon_system/static/img/mega_hair.jpg" alt="Mega Hair">
+                <!--<img src="{{ url_for('static', filename='img/mega_hair.jpg') }}" alt="Mega Hair">-->
+                <!-- Nome do serviço -->
+                <h3>Mega Hair</h3>
+            </div>
+            
+            <!-- CARD DO SERVIÇO: PENTEADOS -->
+            <div class="card">
+                <img src="salon_system/static/img/penteados.jpg" alt="Mega Hair">
+               <!-- <img src="{{ url_for('static', filename='img/penteados.jpg') }}" alt="Penteados">-->
+                <h3>Penteados</h3>
+            </div>
+            
+            <!-- CARD DO SERVIÇO: TRANÇAS -->
+            <div class="card">
+                <img src="salon_system/static/img/tranças.jpg" alt="tranças">
+                <!--<img src="{{ url_for('static', filename='img/tranças.jpg') }}" alt="Tranças">-->
+                <h3>Tranças</h3>
+            </div>
+            
+            <!-- CARD DO SERVIÇO: DESIGN COM HENNA -->
+            <div class="card">
+                <img src="salon_system/static/img/henna.jpg" alt="Design com Henna">
+               <!--  <img src="{{ url_for('static', filename='img/desingn_henna.jpg') }}" alt="Design com Henna">-->
+                <h3>Design com Henna</h3>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- RODAPÉ DA PÁGINA -->
+    <footer>
+        <!-- Nome do salão/copyright -->
+        <p>Monique Braids</p>
+    </footer>
+
+    <!-- SCRIPT JAVASCRIPT -->
+    <!-- Carrega funcionalidades adicionais do arquivo script.js -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

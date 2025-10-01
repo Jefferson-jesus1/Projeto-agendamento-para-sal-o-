@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agendamento - Monique Braids</title>
+    <link rel="stylesheet" href="salon_system/static/css/agendamento.css">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/agendamento.css') }}" />-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <h1>Monique Braids</h1>
+            <ul class="nav-links">
+                <li><a href="/">Início</a></li>
+                <li><a href="/agendamento" class="active">Agendamento</a></li>
+                <li><a href="/#servicos">Serviços</a></li>
+                <li><a href="/contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <h2>Agende seu horário</h2>
+
+        <form id="form-agendamento" method="POST" action="/agendar" class="form-agendamento">
+            <div class="form-group">
+                <label for="servico">Serviço:</label>
+                <select name="servico_id" id="servico" required>
+                    <option value="">-- Selecione o serviço --</option>
+                    {% for s in servicos %}
+                    <option value="{{ s.id }}">{{ s.nome }} — R$ {{ "%.2f"|format(s.preco) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" min="{{ hoje }}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="horario">Horários disponíveis:</label>
+                <select name="horario" id="horario" required disabled>
+                    <option value="">Selecione serviço e data</option>
+                </select>
+                <div id="loading" class="loading" style="display:none;">Carregando horários...</div>
+            </div>
+
+            <div class="form-group">
+                <label for="cliente">Nome completo:</label>
+                <input type="text" name="cliente" id="cliente" placeholder="Seu nome" required />
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone (WhatsApp):</label>
+                <input
+                    type="tel"
+                    name="telefone"
+                    id="telefone"
+                    placeholder="Ex: 11999998888"
+                    pattern="[0-9]{10,11}"
+                    required
+                />
+            </div>
+
+            <button type="submit" id="btn-submit" disabled>Agendar</button>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Monique Braids. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const servicoSelect = document.getElementById('servico');
+        const dataInput = document.getElementById('data');
+        const horarioSelect = document.getElementById('horario');
+        const btnSubmit = document.getElementById('btn-submit');
+        const loadingDiv = document.getElementById('loading');
+
+        function validaFormulario() {
+            const valido =
+                servicoSelect.value &&
+                dataInput.value &&
+                horarioSelect.value &&
+                document.getElementById('cliente').value.trim() &&
+                document.getElementById('telefone').value.trim();
+            btnSubmit.disabled = !valido;
+        }
+
+        servicoSelect.addEventListener('change', atualizarHorarios);
+        dataInput.addEventListener('change', atualizarHorarios);
+
+        function atualizarHorarios() {
+            horarioSelect.innerHTML = '';
+            btnSubmit.disabled = true;
+
+            if (!servicoSelect.value || !dataInput.value) {
+                horarioSelect.disabled = true;
+                horarioSelect.innerHTML = '<option value="">Selecione serviço e data</option>';
+                return;
+            }
+
+            loadingDiv.style.display = 'block';
+
+            fetch(`/horarios_disponiveis?servico_id=${servicoSelect.value}&data=${dataInput.value}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    horarioSelect.disabled = false;
+                    horarioSelect.innerHTML = '';
+
+                    if (data.horarios.length === 0) {
+                        horarioSelect.innerHTML = '<option value="">Nenhum horário disponível</option>';
+                        horarioSelect.disabled = true;
+                    } else {
+                        horarioSelect.innerHTML = '<option value="">-- Selecione o horário --</option>';
+                        data.horarios.forEach((horario) => {
+                            const option = document.createElement('option');
+                            option.value = horario;
+                            option.textContent = horario;
+                            horarioSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(() => {
+                    horarioSelect.innerHTML = '<option value="">Erro ao carregar horários</option>';
+                    horarioSelect.disabled = true;
+                })
+                .finally(() => {
+                    loadingDiv.style.display = 'none';
+                    validaFormulario();
+                });
+        }
+
+        document.getElementById('form-agendamento').addEventListener('input', validaFormulario);
+
+        btnSubmit.disabled = true;
+    </script>
+</body>
+</html>

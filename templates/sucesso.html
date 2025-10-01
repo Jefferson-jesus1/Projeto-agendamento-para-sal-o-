@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agendamento Confirmado - Monique Braids</title>
+    <link rel="stylesheet" href="salon_system/static/css/sucesso.css">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/sucesso.css') }}" />-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-sucesso">
+        <h1>Agendamento Confirmado!</h1>
+        <p>Seu horário foi agendado com sucesso.</p>
+        <p>Clique no botão abaixo para enviar a confirmação pelo WhatsApp:</p>
+        <a href="{{ link_whatsapp }}" target="_blank" class="btn-whatsapp">Enviar WhatsApp</a>
+        <br />
+        <a href="/" class="btn-voltar">Voltar à página inicial</a>
+    </div>
+</body>
+</html>
