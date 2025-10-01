@@ -37,10 +37,12 @@ SERVICOS = [
 # ===========================================================
 def get_db_connection():
     return pymysql.connect(
-        host='localhost',
-        user='root',
-        password='250506',  # Troque antes de hospedar
-        database='salao',
+        host=os.getenv("DB_HOST", "localhost"),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASS", ""),
+        database=os.getenv("DB_NAME", "salao"),
+        port=int(os.getenv("DB_PORT", 3306)),
+        cursorclass=pymysql.cursors.DictCursor
     )
 
 # ===========================================================
